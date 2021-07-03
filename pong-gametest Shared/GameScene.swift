@@ -13,7 +13,7 @@ class GameScene: SKScene {
     var ball = SKSpriteNode()
     var enemy = SKSpriteNode()
     var player = SKSpriteNode()
-    
+    var main = SKSpriteNode()
     
     fileprivate var label : SKLabelNode?
     fileprivate var spinnyNode : SKShapeNode?
@@ -48,7 +48,28 @@ class GameScene: SKScene {
         
       
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for touch in touches {
+            let location = touch.location(in: self)
+            
+            player.run(SKAction.moveTo(x: location.x, duration: 0.2))
+            
+            
+        }
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for touch in touches {
+            let location = touch.location(in: self)
+            
+            player.run(SKAction.moveTo(x: location.x, duration: 0.2))
+        }
+    }
    
+    override func update(_ currentTime: TimeInterval){
+        enemy.run(SKAction.moveTo(x: ball.position.x, duration: 0.5  ))
+    }
 
 
 }
